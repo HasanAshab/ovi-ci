@@ -3,9 +3,13 @@ on:
   push:
     branches:
       - master
+    paths: 
+      - "/src/index.js"
   pull_request:
     branches:
       - master
+    paths: 
+      - "/src/index.js"
   workflow_dispatch:  
 jobs:
   test:
