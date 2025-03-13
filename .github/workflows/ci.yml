@@ -4,12 +4,12 @@ on:
     branches:
       - master
     paths: 
-      - "/src/index.js"
+      - "/src/App.js"
   pull_request:
     branches:
       - master
     paths: 
-      - "/src/index.js"
+      - "/src/App.js"
   workflow_dispatch:  
 jobs:
   test:
