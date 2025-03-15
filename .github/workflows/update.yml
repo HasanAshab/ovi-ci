@@ -1,0 +1,37 @@
+name: Update content
+
+on:
+  push:
+    branches:
+      - master
+    paths: 
+      - "src/App.js"
+  workflow_dispatch:
+
+jobs:
+  update-file:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Clone Repository B
+      uses: GuillaumeFalourd/clone-github-repo-action@v2.3
+      with:
+        depth: 1
+        branch: 'ovi-pages'
+        owner: 'iam-sameera'
+        repository: 'ovi-ci'
+
+    - name: Access cloned repository content
+      run: |
+        cd src
+        cat App.js
+      #  git config --global user.email "devopssameera@gmail.com"
+      #  git config --global user.name "Sameera Dissanayaka"
+      #  git add sam.md
+      #  git commit -m "Update sam.md"
+
+   # - name: Push to Repository B
+    #  run: |
+   #     cd b
+    #    git remote set-url origin https://x-access-token:${{ secrets.PAT }}@github.com/iam-sameera/b.git
+     #   git push
