@@ -26,7 +26,8 @@ jobs:
          cd ovi-ci
          cd src
          cat App.js
-      #  git config --global user.email "devopssameera@gmail.com"
+         git config --global user.email
+       # git config --global user.email "devopssameera@gmail.com"
       #  git config --global user.name "Sameera Dissanayaka"
       #  git add sam.md
       #  git commit -m "Update sam.md"
