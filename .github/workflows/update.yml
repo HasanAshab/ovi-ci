@@ -13,14 +13,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-#     - name: Clone Repository B
-#       uses: GuillaumeFalourd/clone-github-repo-action@v2.3
-#       with:
-#         depth: 1
-#         branch: 'master'
-#         owner: 'HasanAshab'
-#         repository: 'ovi-ci'
-# 
+     - name: Clone Repository B
+       uses: GuillaumeFalourd/clone-github-repo-action@v2.3
+       with:
+         depth: 1
+         branch: 'master'
+         owner: 'HasanAshab'
+         repository: 'ovi-ci'
+
     - name: Access app js content
       run: |
          cd ovi-ci
