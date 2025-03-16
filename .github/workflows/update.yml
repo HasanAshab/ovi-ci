@@ -13,26 +13,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-     - name: Clone Repository B
-       uses: GuillaumeFalourd/clone-github-repo-action@v2.3
+     - name: Checkout master branch
+       uses: actions/checkout@v4
        with:
-         depth: 1
-         branch: 'master'
-         owner: 'HasanAshab'
-         repository: 'ovi-ci'
-
+         ref: master
      - name: Access app js content
-       run: |
-         cd ovi-ci
-         cd src
-         cat App.js
+       run: echo "file_content=$(cat src/App.js)" >> $GITHUB_ENV
        id: access_appjs_content
-#          git config --global user.email "samertask@gmail.com"
-#          git config --global user.name "HasanAshab"
-#          git add App.js
-#          git commit -m "Update sam.md"
      - name: Push to branch ovi pages
-       run: steps.access_appjs_content.outputs
+       run: echo "$file_content"
+
+
 
    # - name: Push to Repository B
     #  run: |
