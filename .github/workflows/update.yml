@@ -22,7 +22,9 @@ jobs:
         repository: 'ovi-ci'
 
     - name: Access cloned repository content
-      run: ls
+      run: |
+         cd ovi-ci
+         ls
        # cd src
        # cat App.js
       #  git config --global user.email "devopssameera@gmail.com"
