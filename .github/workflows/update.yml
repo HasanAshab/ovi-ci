@@ -18,10 +18,13 @@ jobs:
        with:
          ref: master
      - name: Access app js content
-       run: echo "file_content=$(cat src/App.js)" >> $GITHUB_ENV
+       run: |
+         echo "content<<EOF" >> $GITHUB_ENV
+         cat src/App.js >> $GITHUB_ENV
+         echo "EOF" >> $GITHUB_ENV       
        id: access_appjs_content
      - name: Push to branch ovi pages
-       run: echo "$file_content"
+       run: echo "$content"
 
 
 
