@@ -14,7 +14,7 @@ class App extends Component {
         <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">a  Simple React App</h1>
+          <h1 className="App-title">not a very  Simple React App</h1>
         </header>
           <Switch>
                 <Route exact path= "/" render={() => (

@@ -23,13 +23,22 @@ jobs:
          cat src/App.js >> $GITHUB_ENV
          echo "EOF" >> $GITHUB_ENV       
        id: access_appjs_content
-     - name: Push to branch ovi pages
-       run: echo "$content"
-
-
-
-   # - name: Push to Repository B
-    #  run: |
-   #     cd b
-    #    git remote set-url origin https://x-access-token:${{ secrets.PAT }}@github.com/iam-sameera/b.git
-     #   git push
+ 
+     - name: Checkout ovi pages branch
+       uses: actions/checkout@v4
+       with:
+         ref: "ovi-pages"
+         
+     - name: Commit and push changes
+       run: |
+           cd src
+           rm -f App.js
+           echo "lol" > App.js
+           cat App.js
+#           git config --global user.name "github-actions[bot]"
+#           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+#           git add example.txt
+#           git commit -m "Update example.txt via GitHub Actions" || exit 0  # Avoid failure if no changes
+#           git push origin HEAD:ovi-pages  # Always push to ovi-pages
+       env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
