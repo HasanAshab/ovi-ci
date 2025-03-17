@@ -10,7 +10,7 @@ on:
 permissions:
   contents: write 
 jobs:
-  update-file:
+  update-files:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,31 +18,12 @@ jobs:
        uses: actions/checkout@v4
        with:
          ref: master
-     - name: Access app js content
+    
+     - name: sync changes
        run: |
-         echo "content<<EOF" >> $GITHUB_ENV
-         cat src/App.js >> $GITHUB_ENV
-         echo "EOF" >> $GITHUB_ENV       
-       id: access_appjs_content
- 
-     - name: Checkout ovi pages branch
-       uses: actions/checkout@v4
-       with:
-         ref: "ovi-pages"
-     
-     - name: check past content
-       run: cat src/App.js       
-   
-     - name: Commit and push changes
-       run: |
-           cd src
-           rm -f App.js
-           echo "lol" > App.js
-           cat App.js
            git config --global user.name "github-actions[bot]"
            git config --global user.email "github-actions[bot]@users.noreply.github.com"
-           git add App.js
-           git commit -m "Update App.js via GitHub Actions"
-           git push origin HEAD:ovi-pages
+           git commit -m "sync all from master with via GitHub Actions"
+           git push --force origin master:ovi-pages
        env:
          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
