@@ -7,7 +7,8 @@ on:
     paths: 
       - "src/App.js"
   workflow_dispatch:
-
+permissions:
+  contents: write 
 jobs:
   update-file:
     runs-on: ubuntu-latest
