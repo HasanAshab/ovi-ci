@@ -1,29 +1,31 @@
-name: Update content
+name: Sync Master to ovi-pages
 
 on:
   push:
     branches:
       - master
     paths: 
-      - "src/App.js"
+      - "src/App.js"  # Trigger only when App.js changes
   workflow_dispatch:
+
 permissions:
-  contents: write 
+  contents: write  # Ensure write permission for GitHub Actions
+
 jobs:
-  update-files:
+  sync-branches:
     runs-on: ubuntu-latest
 
     steps:
-     - name: Checkout master branch
-       uses: actions/checkout@v4
-       with:
-         ref: master
-    
-     - name: sync changes
-       run: |
-           git config --global user.name "github-actions[bot]"
-           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-           git commit -m "sync all from master with via GitHub Actions"
-           git push --force origin master:ovi-pages
-       env:
-         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Checkout master branch
+        uses: actions/checkout@v4
+        with:
+          ref: master
+
+      - name: Push master to ovi-pages
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch origin ovi-pages || git branch ovi-pages origin/ovi-pages
+          git push --force origin master:ovi-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
