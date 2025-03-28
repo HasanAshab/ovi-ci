@@ -1,12 +1,18 @@
-FROM react:16.4.1
+FROM node:20 AS builder
 
 WORKDIR /App
 
-COPY package*.json .
+COPY package*.json ./
 
-RUN npm install
+RUN npm ci --only=production
 
 COPY . .
+
+FROM node:23-alpine
+
+WORKDIR /App
+
+COPY --from=builder ./App .
 
 EXPOSE 5000
 
