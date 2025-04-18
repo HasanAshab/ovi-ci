@@ -3,13 +3,9 @@ on:
   push:
     branches:
       - master
-    paths: 
-      - "src/App.js"
   pull_request:
     branches:
       - master
-    paths: 
-      - "src/App.js"
   workflow_dispatch:  
 jobs:
   test:
@@ -17,7 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
       - name: install dep
         run: npm install
       - name: run tests
